@@ -3,23 +3,21 @@ import GiftForm from './components/GiftForm';
 import GiftsList from './components/GiftsList';
 
 function App() {
-  const [ gifts, setGifts ] = useState(
-    () => new Set<string>([])
-  )
+  const [gifts, setGifts] = useState(() => new Set<string>([]));
 
   const addGift = (gift: string) => {
-    gifts.add(gift)
-    setGifts((gifts) => new Set(gifts))
-  }
+    gifts.add(gift);
+    setGifts(() => new Set(gifts));
+  };
 
   const deleteGift = (gift: string) => {
-    gifts.delete(gift)
-    setGifts((gifts) => new Set(gifts))
-  }
+    gifts.delete(gift);
+    setGifts(() => new Set(gifts));
+  };
 
   const deleteAllGifts = () => {
-    setGifts(() => new Set([]))
-  }
+    setGifts(() => new Set([]));
+  };
 
   return (
     <div className="font-christmas bg-christmas h-screen flex flex-col justify-center items-center text-center">
