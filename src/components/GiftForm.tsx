@@ -12,8 +12,10 @@ function GiftForm({ onGiftSubmitted }: GiftFormProps) {
   const handleSubmit = (e: React.FormEvent<Form>) => {
     e.preventDefault();
     const gift = e.currentTarget.gift.value;
-    onGiftSubmitted(gift);
-    e.currentTarget.gift.value = '';
+    if (gift) {
+      onGiftSubmitted(gift.toUpperCase());
+      e.currentTarget.gift.value = '';
+    }
   };
 
   return (
