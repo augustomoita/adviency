@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface GiftsListProps {
-  gifts: Set<string>;
+  gifts: Map<string, number>;
   handleDelete: Function;
   handleDeleteAll: Function;
 }
@@ -12,13 +12,13 @@ function GiftsList({ gifts, handleDelete, handleDeleteAll }: GiftsListProps) {
       <ul>
         {Array.from(gifts).map((gift, index) => (
           <li key={index} className="my-1">
-            {gift}
+            {gift[1]} x {gift[0]}
             <button
               type="button"
               className="mx-1 py-1 px-2 font-semibold rounded-lg shadow-md text-white bg-red-500 hover:bg-red-700"
-              onClick={() => handleDelete(gift)}
+              onClick={() => handleDelete(gift[0])}
             >
-              -
+              X
             </button>
           </li>
         ))}

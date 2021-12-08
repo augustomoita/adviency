@@ -6,14 +6,16 @@ interface GiftFormProps {
 
 interface Form extends HTMLFormElement {
   gift: HTMLInputElement;
+  qty: HTMLInputElement;
 }
 
 function GiftForm({ onGiftSubmitted }: GiftFormProps) {
   const handleSubmit = (e: React.FormEvent<Form>) => {
     e.preventDefault();
     const gift = e.currentTarget.gift.value;
+    const qty = Number(e.currentTarget.qty.value);
     if (gift) {
-      onGiftSubmitted(gift.toUpperCase());
+      onGiftSubmitted(gift.toUpperCase(), qty);
       e.currentTarget.gift.value = '';
     }
   };
@@ -24,6 +26,13 @@ function GiftForm({ onGiftSubmitted }: GiftFormProps) {
         type="text"
         name="gift"
         className="mr-2 border-red-500 focus:border-red-500 focus:ring-red-500 focus:ring-offset-red-700"
+      />
+      <input
+        type="number"
+        name="qty"
+        min={1}
+        defaultValue={1}
+        className="mr-2 border-red-500 focus:border-red-500 focus:ring-red-500 focus:ring-offset-red-700 w-16"
       />
       <button
         type="submit"

@@ -3,20 +3,21 @@ import GiftForm from './components/GiftForm';
 import GiftsList from './components/GiftsList';
 
 function App() {
-  const [gifts, setGifts] = useState(() => new Set<string>([]));
+  const [gifts, setGifts] = useState(() => new Map<string, number>());
 
-  const addGift = (gift: string) => {
-    gifts.add(gift);
-    setGifts(() => new Set(gifts));
+  const addGift = (gift: string, quantity: number) => {
+    const qty = (gifts.get(gift) || 0) + quantity;
+    gifts.set(gift, qty);
+    setGifts(() => new Map<string, number>(gifts));
   };
 
   const deleteGift = (gift: string) => {
     gifts.delete(gift);
-    setGifts(() => new Set(gifts));
+    setGifts(() => new Map<string, number>(gifts));
   };
 
   const deleteAllGifts = () => {
-    setGifts(() => new Set([]));
+    setGifts(() => new Map<string, number>());
   };
 
   return (
