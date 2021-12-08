@@ -1,19 +1,20 @@
 import React from 'react';
+import { IGift } from '../types';
 
-interface GiftFormProps {
-  onGiftSubmitted: Function;
-}
+type Props = {
+  onGiftSubmitted: (gift: IGift['gift'], qty: IGift['qty']) => void;
+};
 
 interface Form extends HTMLFormElement {
   gift: HTMLInputElement;
   qty: HTMLInputElement;
 }
 
-function GiftForm({ onGiftSubmitted }: GiftFormProps) {
+function GiftForm({ onGiftSubmitted }: Props) {
   const handleSubmit = (e: React.FormEvent<Form>) => {
     e.preventDefault();
     const gift = e.currentTarget.gift.value;
-    const qty = Number(e.currentTarget.qty.value);
+    const qty = +e.currentTarget.qty.value;
     if (gift) {
       onGiftSubmitted(gift.toUpperCase(), qty);
       e.currentTarget.gift.value = '';

@@ -1,23 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import GiftForm from './components/GiftForm';
 import GiftsList from './components/GiftsList';
+import { IGift } from './types';
+import { useGift } from './useGift';
 
 function App() {
-  const [gifts, setGifts] = useState(() => new Map<string, number>());
+  const { gifts, add, remove, clean } = useGift();
 
-  const addGift = (gift: string, quantity: number) => {
-    const qty = (gifts.get(gift) || 0) + quantity;
-    gifts.set(gift, qty);
-    setGifts(() => new Map<string, number>(gifts));
+  const addGift = (gift: IGift['gift'], quantity: IGift['qty']) => {
+    add(gift, quantity);
   };
 
-  const deleteGift = (gift: string) => {
-    gifts.delete(gift);
-    setGifts(() => new Map<string, number>(gifts));
+  const deleteGift = (gift: IGift['gift']) => {
+    remove(gift);
   };
 
   const deleteAllGifts = () => {
-    setGifts(() => new Map<string, number>());
+    clean();
   };
 
   return (

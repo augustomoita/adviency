@@ -1,29 +1,30 @@
 import React from 'react';
+import { IGift } from '../types';
 
-interface GiftsListProps {
-  gifts: Map<string, number>;
-  handleDelete: Function;
-  handleDeleteAll: Function;
-}
+type Props = {
+  gifts: IGift[];
+  handleDelete: (gift: IGift['gift']) => void;
+  handleDeleteAll: () => void;
+};
 
-function GiftsList({ gifts, handleDelete, handleDeleteAll }: GiftsListProps) {
+function GiftsList({ gifts, handleDelete, handleDeleteAll }: Props) {
   return (
     <div className="pt-3">
       <ul>
-        {Array.from(gifts).map((gift, index) => (
+        {gifts.map(({ gift, qty }: IGift, index) => (
           <li key={index} className="my-1">
-            {gift[1]} x {gift[0]}
+            {qty} x {gift}
             <button
               type="button"
               className="mx-1 py-1 px-2 font-semibold rounded-lg shadow-md text-white bg-red-500 hover:bg-red-700"
-              onClick={() => handleDelete(gift[0])}
+              onClick={() => handleDelete(gift)}
             >
               X
             </button>
           </li>
         ))}
       </ul>
-      {gifts.size > 0 ? (
+      {gifts.length > 0 ? (
         <button
           type="button"
           className="mt-6 py-1 px-3 rounded-lg shadow-md text-white bg-red-400 hover:bg-red-600"
