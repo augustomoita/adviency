@@ -1,17 +1,17 @@
 import React from 'react';
 import GiftForm from './components/GiftForm';
 import GiftsList from './components/GiftsList';
-import { IGift } from './types';
+import { Gift } from './types';
 import { useGift } from './useGift';
 
 function App() {
   const { gifts, add, remove, clean } = useGift();
 
-  const addGift = (gift: IGift['gift'], quantity: IGift['qty']) => {
+  const addGift = (gift: Gift['gift'], quantity: Gift['qty']) => {
     add(gift, quantity);
   };
 
-  const deleteGift = (gift: IGift['gift']) => {
+  const deleteGift = (gift: Gift['gift']) => {
     remove(gift);
   };
 

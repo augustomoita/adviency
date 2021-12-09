@@ -1,4 +1,4 @@
-export interface IGift {
+export interface Gift {
   gift: string;
   qty: number;
 }

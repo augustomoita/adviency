@@ -1,9 +1,9 @@
 import React from 'react';
-import { IGift } from '../types';
+import { Gift } from '../types';
 
 type Props = {
-  gifts: IGift[];
-  handleDelete: (gift: IGift['gift']) => void;
+  gifts: Gift[];
+  handleDelete: (gift: Gift['gift']) => void;
   handleDeleteAll: () => void;
 };
 
@@ -11,7 +11,7 @@ function GiftsList({ gifts, handleDelete, handleDeleteAll }: Props) {
   return (
     <div className="pt-3">
       <ul>
-        {gifts.map(({ gift, qty }: IGift, index) => (
+        {gifts.map(({ gift, qty }: Gift, index) => (
           <li key={index} className="my-1 flex justify-between">
             <span>
               <span className="inline-flex items-center justify-center px-2 py-1 mr-2 text-sm font-bold leading-none text-white bg-green-600 rounded-full">
