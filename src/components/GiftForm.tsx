@@ -26,14 +26,16 @@ function GiftForm({ onGiftSubmitted }: Props) {
       <input
         type="text"
         name="gift"
-        className="mr-2 border-red-500 focus:border-red-500 focus:ring-red-500 focus:ring-offset-red-700"
+        className="mr-2 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent"
+        placeholder="Regalo"
       />
       <input
         type="number"
         name="qty"
         min={1}
         defaultValue={1}
-        className="mr-2 border-red-500 focus:border-red-500 focus:ring-red-500 focus:ring-offset-red-700 w-16"
+        className="mr-2 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent w-16"
+        placeholder="Cantidad"
       />
       <button
         type="submit"
