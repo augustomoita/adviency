@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Gift } from './types';
 
 export const useGift = () => {
@@ -6,16 +6,21 @@ export const useGift = () => {
 
   const [gifts, setGifts] = useState<Gift[]>(JSON.parse(storedGifts));
 
+  useEffect(() => {
+    return localStorage.setItem('gifts', JSON.stringify(gifts));
+  }, [gifts]);
+
   function update(gift: Gift['gift'], qty: Gift['qty']) {
-    const updatedGifts = gifts.map((item) =>
-      item.gift === gift
-        ? {
-            ...item,
-            qty: item.qty + qty,
-          }
-        : item
+    setGifts(
+      gifts.map((item) =>
+        item.gift === gift
+          ? {
+              ...item,
+              qty: item.qty + qty,
+            }
+          : item
+      )
     );
-    save(updatedGifts);
   }
 
   function add(gift: Gift['gift'], qty: Gift['qty']) {
@@ -26,28 +31,21 @@ export const useGift = () => {
       return;
     }
 
-    const updatedGifts = [
+    setGifts([
       ...gifts,
       {
         gift,
         qty,
       },
-    ];
-    save(updatedGifts);
+    ]);
   }
 
   function remove(gift: Gift['gift']) {
-    const updatedGifts = gifts.filter((item) => item.gift !== gift);
-    save(updatedGifts);
+    setGifts(gifts.filter((item) => item.gift !== gift));
   }
 
   function clean() {
-    save([]);
-  }
-
-  function save(giftsToSave: Gift[]) {
-    setGifts(giftsToSave);
-    localStorage.setItem('gifts', JSON.stringify(giftsToSave));
+    setGifts([]);
   }
 
   return { gifts, add, remove, clean };
