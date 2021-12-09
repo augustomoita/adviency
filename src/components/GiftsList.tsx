@@ -25,7 +25,7 @@ function GiftsList({ gifts, handleDelete, handleDeleteAll }: Props) {
           Borrar todo
         </button>
       ) : (
-        <p>Agrega regalos</p>
+        <p>No hay regalos, agrega alguno!</p>
       )}
     </div>
   );
