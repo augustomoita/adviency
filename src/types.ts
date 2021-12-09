@@ -1,4 +1,4 @@
 export interface Gift {
-  gift: string;
+  name: string;
   qty: number;
 }

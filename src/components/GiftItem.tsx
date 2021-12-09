@@ -7,13 +7,14 @@ type Props = {
 };
 
 function GiftItem({ gift, handleDelete }: Props) {
+  const { name, qty } = gift;
   return (
     <li className="my-1 flex justify-between">
       <span>
         <span className="inline-flex items-center justify-center px-2 py-1 mr-2 text-sm font-bold leading-none text-white bg-green-600 rounded-full">
-          {gift.qty}
+          {qty}
         </span>
-        {gift.gift}
+        {name}
       </span>
       <button
         type="button"

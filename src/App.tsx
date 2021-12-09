@@ -7,7 +7,7 @@ import { useGift } from './useGift';
 function App() {
   const { gifts, add, remove, clean } = useGift();
 
-  const addGift = (gift: Gift['gift'], quantity: Gift['qty']) => {
+  const addGift = (gift: Gift['name'], quantity: Gift['qty']) => {
     add(gift, quantity);
   };
 

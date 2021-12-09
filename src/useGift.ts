@@ -10,10 +10,10 @@ export const useGift = () => {
     return localStorage.setItem('gifts', JSON.stringify(gifts));
   }, [gifts]);
 
-  function update(gift: Gift['gift'], qty: Gift['qty']) {
+  function update(gift: Gift, qty: Gift['qty']) {
     setGifts(
       gifts.map((item) =>
-        item.gift === gift
+        item.name === gift.name
           ? {
               ...item,
               qty: item.qty + qty,
@@ -23,25 +23,25 @@ export const useGift = () => {
     );
   }
 
-  function add(gift: Gift['gift'], qty: Gift['qty']) {
-    const exists = gifts.find((item) => item.gift === gift);
+  function add(gift: Gift['name'], qty: Gift['qty']) {
+    const exists = gifts.find((item) => item.name === gift);
 
     if (exists) {
-      update(exists.gift, qty);
+      update(exists, qty);
       return;
     }
 
     setGifts([
       ...gifts,
       {
-        gift,
+        name: gift,
         qty,
       },
     ]);
   }
 
   function remove(gift: Gift) {
-    setGifts(gifts.filter((item) => item.gift !== gift.gift));
+    setGifts(gifts.filter((item) => item.name !== gift.name));
   }
 
   function clean() {

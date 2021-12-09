@@ -2,7 +2,7 @@ import React from 'react';
 import { Gift } from '../types';
 
 type Props = {
-  onGiftSubmitted: (gift: Gift['gift'], qty: Gift['qty']) => void;
+  onGiftSubmitted: (gift: Gift['name'], qty: Gift['qty']) => void;
 };
 
 interface Form extends HTMLFormElement {
