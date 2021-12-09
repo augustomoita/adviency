@@ -40,8 +40,8 @@ export const useGift = () => {
     ]);
   }
 
-  function remove(gift: Gift['gift']) {
-    setGifts(gifts.filter((item) => item.gift !== gift));
+  function remove(gift: Gift) {
+    setGifts(gifts.filter((item) => item.gift !== gift.gift));
   }
 
   function clean() {

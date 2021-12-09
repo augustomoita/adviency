@@ -11,7 +11,7 @@ function App() {
     add(gift, quantity);
   };
 
-  const deleteGift = (gift: Gift['gift']) => {
+  const deleteGift = (gift: Gift) => {
     remove(gift);
   };
 
