@@ -4,17 +4,12 @@ import GiftItem from './GiftItem';
 
 type Props = {
   gifts: Gift[];
-  handleDelete: (gift: Gift) => void;
-  handleDeleteAll: () => void;
-  handleUpdate: (gift: Gift, qty: Gift['qty']) => void;
+  onDeleteItem: (gift: Gift) => void;
+  onDeleteAll: () => void;
+  onUpdateItem: (gift: Gift, qty: Gift['qty']) => void;
 };
 
-function GiftsList({
-  gifts,
-  handleDelete,
-  handleDeleteAll,
-  handleUpdate,
-}: Props) {
+function GiftsList({ gifts, onDeleteItem, onDeleteAll, onUpdateItem }: Props) {
   return (
     <div className="pt-3">
       <ul>
@@ -22,8 +17,8 @@ function GiftsList({
           <GiftItem
             key={index}
             gift={gift}
-            handleDelete={handleDelete}
-            handleUpdate={handleUpdate}
+            onDelete={onDeleteItem}
+            onUpdate={onUpdateItem}
           />
         ))}
       </ul>
@@ -31,7 +26,7 @@ function GiftsList({
         <button
           type="button"
           className="mt-6 py-1 px-3 rounded-lg shadow-md text-white bg-red-400 hover:bg-red-600"
-          onClick={() => handleDeleteAll()}
+          onClick={() => onDeleteAll()}
         >
           Borrar todo
         </button>

@@ -40,9 +40,9 @@ function App() {
         <GiftForm onGiftSubmitted={addGift} error={error} />
         <GiftsList
           gifts={gifts}
-          handleDelete={deleteGift}
-          handleDeleteAll={deleteAllGifts}
-          handleUpdate={updateQuantity}
+          onDeleteItem={deleteGift}
+          onDeleteAll={deleteAllGifts}
+          onUpdateItem={updateQuantity}
         />
       </div>
     </div>

@@ -2,15 +2,15 @@ import React from 'react';
 
 type Props = {
   qty: number;
-  handleUpdate: (qty: number) => void;
+  onChange: (qty: number) => void;
 };
 
-function Badge({ qty, handleUpdate }: Props) {
+function Badge({ qty, onChange }: Props) {
   return (
     <span className="flex flex-col">
       <button
         className="bg-white hover:bg-gray-100 text-gray-800 font-semibold rounded mb-1"
-        onClick={() => handleUpdate(1)}
+        onClick={() => onChange(1)}
       >
         ⬆️
       </button>
@@ -19,7 +19,7 @@ function Badge({ qty, handleUpdate }: Props) {
       </span>
       <button
         className="bg-white hover:bg-gray-100 text-gray-800 font-semibold rounded mt-1"
-        onClick={() => handleUpdate(-1)}
+        onClick={() => onChange(-1)}
       >
         ⬇️
       </button>
