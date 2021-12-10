@@ -9,16 +9,16 @@ function App() {
   const [error, setError] = useState<string | null>(null);
 
   const addGift = (
-    gift: Gift['name'],
-    quantity: Gift['qty'],
+    name: Gift['name'],
+    qty: Gift['qty'],
     image: Gift['image']
   ) => {
-    if (find(gift)) {
+    if (find(name)) {
       setError('El regalo ya fue cargado');
       return;
     }
     setError(null);
-    add(gift, quantity, image);
+    add(name, qty, image);
   };
 
   const updateQuantity = (gift: Gift, qty: Gift['qty']) => {
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className="font-christmas bg-christmas h-screen flex flex-col justify-center items-center text-center">
-      <div className="bg-white rounded p-16">
+      <div className="border-8 border-double border-green-600 bg-white rounded p-16">
         <h1 className="text-3xl mb-3">Regalos:</h1>
         <GiftForm onGiftSubmitted={addGift} error={error} />
         <GiftsList
