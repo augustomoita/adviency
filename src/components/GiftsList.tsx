@@ -6,14 +6,25 @@ type Props = {
   gifts: Gift[];
   handleDelete: (gift: Gift) => void;
   handleDeleteAll: () => void;
+  handleUpdate: (gift: Gift, qty: Gift['qty']) => void;
 };
 
-function GiftsList({ gifts, handleDelete, handleDeleteAll }: Props) {
+function GiftsList({
+  gifts,
+  handleDelete,
+  handleDeleteAll,
+  handleUpdate,
+}: Props) {
   return (
     <div className="pt-3">
       <ul>
         {gifts.map((gift: Gift, index) => (
-          <GiftItem key={index} gift={gift} handleDelete={handleDelete} />
+          <GiftItem
+            key={index}
+            gift={gift}
+            handleDelete={handleDelete}
+            handleUpdate={handleUpdate}
+          />
         ))}
       </ul>
       {gifts.length > 0 ? (

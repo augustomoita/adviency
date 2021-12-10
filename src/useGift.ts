@@ -23,19 +23,17 @@ export const useGift = () => {
     );
   }
 
-  function add(gift: Gift['name'], qty: Gift['qty']) {
-    const exists = gifts.find((item) => item.name === gift);
+  function find(gift: Gift['name']): Gift | undefined {
+    return gifts.find((item) => item.name === gift);
+  }
 
-    if (exists) {
-      update(exists, qty);
-      return;
-    }
-
+  function add(gift: Gift['name'], qty: Gift['qty'], image: Gift['image']) {
     setGifts([
       ...gifts,
       {
         name: gift,
         qty,
+        image,
       },
     ]);
   }
@@ -48,5 +46,5 @@ export const useGift = () => {
     setGifts([]);
   }
 
-  return { gifts, add, remove, clean };
+  return { gifts, find, add, update, remove, clean };
 };
