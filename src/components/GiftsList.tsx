@@ -17,8 +17,8 @@ function GiftsList({ gifts, onDeleteItem, onDeleteAll, onUpdateItem }: Props) {
           <GiftItem
             key={index}
             gift={gift}
-            onDelete={onDeleteItem}
-            onUpdate={onUpdateItem}
+            onDelete={() => onDeleteItem(gift)}
+            onQtyChange={(quantity: number) => onUpdateItem(gift, quantity)}
           />
         ))}
       </ul>
@@ -26,7 +26,7 @@ function GiftsList({ gifts, onDeleteItem, onDeleteAll, onUpdateItem }: Props) {
         <button
           type="button"
           className="mt-6 py-1 px-3 rounded-lg shadow-md text-white bg-red-400 hover:bg-red-600"
-          onClick={() => onDeleteAll()}
+          onClick={onDeleteAll}
         >
           Borrar todo
         </button>
