@@ -34,7 +34,7 @@ function App() {
   };
 
   return (
-    <div className="font-christmas bg-christmas h-screen flex flex-col justify-center items-center text-center">
+    <div className="font-christmas bg-christmas bg-no-repeat bg-cover h-screen flex flex-col justify-center items-center text-center">
       <div className="border-8 border-double border-green-600 bg-white rounded p-16">
         <h1 className="text-3xl mb-3">Regalos:</h1>
         <GiftForm onGiftSubmitted={addGift} error={error} />

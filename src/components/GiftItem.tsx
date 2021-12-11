@@ -18,11 +18,11 @@ function GiftItem({ gift, onDelete, onQtyChange }: Props) {
   };
 
   return (
-    <li className="my-1 flex justify-between items-center">
+    <li className="flex justify-between items-center my-2 py-2 px-2 border-2 shadow-sm hover:shadow-md">
       <span className="flex items-center">
         <img src={image} alt={name} className="h-16 w-16 p-1" />
         <Badge qty={qty} onChange={handleUpdate} />
-        {name}
+        <p className="text-lg font-medium">{name}</p>
       </span>
       <button
         type="button"
