@@ -1,5 +1,6 @@
 import React from 'react';
 import { Gift } from '../types';
+import Button from './Button';
 import GiftItem from './GiftItem';
 
 type Props = {
@@ -23,13 +24,9 @@ function GiftsList({ gifts, onDeleteItem, onDeleteAll, onUpdateItem }: Props) {
         ))}
       </ul>
       {gifts.length > 0 ? (
-        <button
-          type="button"
-          className="mt-6 py-1 px-3 rounded-lg shadow-md text-white bg-red-400 hover:bg-red-600"
-          onClick={onDeleteAll}
-        >
+        <Button className="mt-6" color="red" onClick={onDeleteAll}>
           Borrar todo
-        </button>
+        </Button>
       ) : (
         <p>No hay regalos, agrega alguno!</p>
       )}

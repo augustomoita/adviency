@@ -1,6 +1,7 @@
 import React from 'react';
 import { Gift } from '../types';
 import Badge from './Badge';
+import Button from './Button';
 
 type Props = {
   gift: Gift;
@@ -21,16 +22,14 @@ function GiftItem({ gift, onDelete, onQtyChange }: Props) {
     <li className="flex justify-between items-center my-2 py-2 px-2 border-2 shadow-sm hover:shadow-md">
       <span className="flex items-center">
         <img src={image} alt={name} className="h-16 w-16 p-1" />
-        <Badge qty={qty} onChange={handleUpdate} />
-        <p className="text-lg font-medium">{name}</p>
+        <p className="text-lg font-medium mx-2">{name}</p>
       </span>
-      <button
-        type="button"
-        className="mx-1 py-1 px-2 font-semibold rounded-lg shadow-md text-white bg-red-400 hover:bg-red-600 h-1/2"
-        onClick={onDelete}
-      >
-        X
-      </button>
+      <span className="flex items-center">
+        <Badge qty={qty} onChange={handleUpdate} />
+        <Button className="mx-1" color="red" onClick={onDelete}>
+          X
+        </Button>
+      </span>
     </li>
   );
 }

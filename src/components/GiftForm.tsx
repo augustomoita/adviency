@@ -1,5 +1,6 @@
 import React from 'react';
 import { Gift } from '../types';
+import Button from './Button';
 
 type Props = {
   onGiftSubmitted: (
@@ -52,12 +53,7 @@ function GiftForm({ onGiftSubmitted, error }: Props) {
         className="mr-2 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent w-16"
         placeholder="Cantidad"
       />
-      <button
-        type="submit"
-        className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-red-500 hover:bg-red-700"
-      >
-        Agregar
-      </button>
+      <Button color="red">Agregar</Button>
       {error && <p className="mt-3 font-semibold text-red-500">{error}</p>}
     </form>
   );
