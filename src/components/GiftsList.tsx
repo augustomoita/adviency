@@ -14,9 +14,9 @@ function GiftsList({ gifts, onDeleteItem, onDeleteAll, onUpdateItem }: Props) {
   return (
     <div className="pt-3">
       <ul>
-        {gifts.map((gift: Gift, index) => (
+        {gifts.map((gift: Gift) => (
           <GiftItem
-            key={index}
+            key={gift.id}
             gift={gift}
             onDelete={() => onDeleteItem(gift)}
             onQtyChange={(quantity: number) => onUpdateItem(gift, quantity)}

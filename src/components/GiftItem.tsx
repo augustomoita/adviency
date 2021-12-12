@@ -10,7 +10,7 @@ type Props = {
 };
 
 function GiftItem({ gift, onDelete, onQtyChange }: Props) {
-  const { name, qty, image } = gift;
+  const { name, qty, image, destinatario } = gift;
 
   const handleUpdate = (quantity: number) => {
     if (qty + quantity > 0) {
@@ -22,7 +22,12 @@ function GiftItem({ gift, onDelete, onQtyChange }: Props) {
     <li className="flex justify-between items-center my-2 py-2 px-2 border-2 shadow-sm hover:shadow-md">
       <span className="flex items-center">
         <img src={image} alt={name} className="h-16 w-16 p-1" />
-        <p className="text-lg font-medium mx-2">{name}</p>
+        <div className="text-left">
+          <p className="uppercase text-lg font-medium mx-2">{name}</p>
+          <p className="capitalize text-sm text-gray-400 mx-2">
+            {destinatario}
+          </p>
+        </div>
       </span>
       <span className="flex items-center">
         <Badge qty={qty} onChange={handleUpdate} />

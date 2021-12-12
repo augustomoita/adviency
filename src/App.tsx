@@ -14,14 +14,14 @@ function App() {
   const addGift = (
     name: Gift['name'],
     qty: Gift['qty'],
-    image: Gift['image']
+    image: Gift['image'],
+    destinatario: Gift['destinatario']
   ) => {
-    if (find(name)) {
+    if (find(name, destinatario)) {
       setError('El regalo ya fue cargado');
       return;
     }
-    setError(null);
-    add(name, qty, image);
+    add(name, qty, image, destinatario);
     closeModal();
   };
 
@@ -43,6 +43,7 @@ function App() {
 
   const closeModal = () => {
     setFormVisible(false);
+    setError(null);
   };
 
   return (
@@ -54,7 +55,7 @@ function App() {
           onCancel={closeModal}
         />
       </Modal>
-      <div className="border-8 border-double border-green-600 bg-white rounded px-16 py-8">
+      <div className="border-8 border-double border-green-600 bg-white rounded px-16 py-8 w-2/5">
         <h1 className="text-3xl mb-3">Regalos:</h1>
         <Button color="red" onClick={openModal}>
           Agregar Regalo

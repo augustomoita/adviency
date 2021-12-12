@@ -13,7 +13,7 @@ export const useGift = () => {
   function update(gift: Gift, qty: Gift['qty']) {
     setGifts(
       gifts.map((item) =>
-        item.name === gift.name
+        item.id === gift.id
           ? {
               ...item,
               qty: item.qty + qty,
@@ -23,23 +23,37 @@ export const useGift = () => {
     );
   }
 
-  function find(gift: Gift['name']): Gift | undefined {
-    return gifts.find((item) => item.name === gift);
+  function find(
+    gift: Gift['name'],
+    destinatario: Gift['destinatario']
+  ): Gift | undefined {
+    return gifts.find(
+      (item) =>
+        item.name.toLowerCase() === gift.toLowerCase() &&
+        item.destinatario.toLowerCase() === destinatario.toLowerCase()
+    );
   }
 
-  function add(gift: Gift['name'], qty: Gift['qty'], image: Gift['image']) {
+  function add(
+    gift: Gift['name'],
+    qty: Gift['qty'],
+    image: Gift['image'],
+    destinatario: Gift['destinatario']
+  ) {
     setGifts([
       ...gifts,
       {
+        id: Math.floor(Math.random() * Date.now()),
         name: gift,
         qty,
         image,
+        destinatario,
       },
     ]);
   }
 
   function remove(gift: Gift) {
-    setGifts(gifts.filter((item) => item.name !== gift.name));
+    setGifts(gifts.filter((item) => item.id !== gift.id));
   }
 
   function clean() {
