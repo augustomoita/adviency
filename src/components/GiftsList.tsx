@@ -24,7 +24,7 @@ function GiftsList({ gifts, onDeleteItem, onDeleteAll, onUpdateItem }: Props) {
         ))}
       </ul>
       {gifts.length > 0 ? (
-        <Button className="mt-6" color="red" onClick={onDeleteAll}>
+        <Button className="mt-6" color="red" tone={300} onClick={onDeleteAll}>
           Borrar todo
         </Button>
       ) : (

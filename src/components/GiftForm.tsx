@@ -8,6 +8,7 @@ type Props = {
     qty: Gift['qty'],
     image: Gift['image']
   ) => void;
+  onCancel: () => void;
   error: string | null;
 };
 
@@ -17,7 +18,7 @@ interface Form extends HTMLFormElement {
   image: HTMLInputElement;
 }
 
-function GiftForm({ onGiftSubmitted, error }: Props) {
+function GiftForm({ onGiftSubmitted, error, onCancel }: Props) {
   const handleSubmit = (e: React.FormEvent<Form>) => {
     e.preventDefault();
     const gift = e.currentTarget.gift.value;
@@ -30,18 +31,19 @@ function GiftForm({ onGiftSubmitted, error }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="flex flex-col justify-evenly">
+      <h2 className="text-2xl">Agregar Regalo</h2>
       <input
         type="text"
         name="gift"
-        className="mr-2 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent"
+        className="my-3 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent"
         required
         placeholder="Regalo"
       />
       <input
         type="text"
         name="image"
-        className="mr-2 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent"
+        className="my-3 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent"
         required
         placeholder="Imagen"
       />
@@ -50,10 +52,17 @@ function GiftForm({ onGiftSubmitted, error }: Props) {
         name="qty"
         min={1}
         defaultValue={1}
-        className="mr-2 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent w-16"
+        className="my-3 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent"
         placeholder="Cantidad"
       />
-      <Button color="red">Agregar</Button>
+      <div className="flex justify-evenly">
+        <Button color="gray" tone={300} className="w-1/3" onClick={onCancel}>
+          Cancelar
+        </Button>
+        <Button color="red" type="submit" className="w-1/3">
+          Agregar
+        </Button>
+      </div>
       {error && <p className="mt-3 font-semibold text-red-500">{error}</p>}
     </form>
   );

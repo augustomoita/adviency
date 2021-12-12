@@ -2,6 +2,7 @@ import React from 'react';
 
 type Props = {
   color?: string;
+  tone?: number;
   onClick?: () => void;
   className?: string;
   type?: 'button' | 'submit' | 'reset';
@@ -10,6 +11,7 @@ type Props = {
 const Button: React.FC<Props> = ({
   children,
   color = 'gray',
+  tone = 500,
   onClick = () => {},
   className = '',
   type = 'button',
@@ -17,7 +19,9 @@ const Button: React.FC<Props> = ({
   return (
     <button
       type={type}
-      className={`py-2 px-3 font-semibold rounded-lg shadow-md text-white bg-${color}-500 hover:bg-${color}-700 ${className}`}
+      className={`py-2 px-3 font-semibold rounded-lg shadow-md text-white bg-${color}-${tone} hover:bg-${color}-${
+        tone + 200
+      } ${className}`}
       onClick={onClick}
     >
       {children}

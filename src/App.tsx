@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import Button from './components/Button';
 import GiftForm from './components/GiftForm';
 import GiftsList from './components/GiftsList';
+import Modal from './components/Modal';
 import { Gift } from './types';
 import { useGift } from './useGift';
 
 function App() {
   const { gifts, find, add, update, remove, clean } = useGift();
   const [error, setError] = useState<string | null>(null);
+  const [formVisible, setFormVisible] = useState<boolean>(false);
 
   const addGift = (
     name: Gift['name'],
@@ -19,6 +22,7 @@ function App() {
     }
     setError(null);
     add(name, qty, image);
+    closeModal();
   };
 
   const updateQuantity = (gift: Gift, qty: Gift['qty']) => {
@@ -33,11 +37,28 @@ function App() {
     clean();
   };
 
+  const openModal = () => {
+    setFormVisible(true);
+  };
+
+  const closeModal = () => {
+    setFormVisible(false);
+  };
+
   return (
     <div className="font-christmas bg-christmas bg-no-repeat bg-cover h-screen flex flex-col justify-center items-center text-center">
-      <div className="border-8 border-double border-green-600 bg-white rounded p-16">
+      <Modal visible={formVisible}>
+        <GiftForm
+          onGiftSubmitted={addGift}
+          error={error}
+          onCancel={closeModal}
+        />
+      </Modal>
+      <div className="border-8 border-double border-green-600 bg-white rounded px-16 py-8">
         <h1 className="text-3xl mb-3">Regalos:</h1>
-        <GiftForm onGiftSubmitted={addGift} error={error} />
+        <Button color="red" onClick={openModal}>
+          Agregar Regalo
+        </Button>
         <GiftsList
           gifts={gifts}
           onDeleteItem={deleteGift}
