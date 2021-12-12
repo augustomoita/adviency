@@ -5,7 +5,7 @@ type Props = {
   onChange: (qty: number) => void;
 };
 
-function Badge({ qty, onChange }: Props) {
+function Counter({ qty, onChange }: Props) {
   return (
     <span className="flex flex-col mx-2">
       <button
@@ -27,4 +27,4 @@ function Badge({ qty, onChange }: Props) {
   );
 }
 
-export default Badge;
+export default Counter;

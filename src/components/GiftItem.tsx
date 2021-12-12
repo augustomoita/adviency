@@ -1,6 +1,6 @@
 import React from 'react';
 import { Gift } from '../types';
-import Badge from './Badge';
+import Counter from './Counter';
 import Button from './Button';
 
 type Props = {
@@ -28,7 +28,7 @@ function GiftItem({ gift, onDelete, onQtyChange }: Props) {
         </div>
       </span>
       <span className="flex items-center">
-        <Badge qty={qty} onChange={handleUpdate} />
+        <Counter qty={qty} onChange={handleUpdate} />
         <Button className="mx-1" color="red" onClick={onDelete}>
           X
         </Button>
