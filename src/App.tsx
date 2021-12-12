@@ -7,7 +7,7 @@ import { Gift } from './types';
 import { useGift } from './useGift';
 
 function App() {
-  const { gifts, find, add, update, remove, clean } = useGift();
+  const { gifts, get, add, update, remove, clean } = useGift();
   const [error, setError] = useState<string | null>(null);
   const [formVisible, setFormVisible] = useState<boolean>(false);
 
@@ -15,13 +15,13 @@ function App() {
     name: Gift['name'],
     qty: Gift['qty'],
     image: Gift['image'],
-    destinatario: Gift['destinatario']
+    receiver: Gift['receiver']
   ) => {
-    if (find(name, destinatario)) {
+    if (get(name, receiver)) {
       setError('El regalo ya fue cargado');
       return;
     }
-    add(name, qty, image, destinatario);
+    add(name, qty, image, receiver);
     closeModal();
   };
 

@@ -7,7 +7,7 @@ type Props = {
     gift: Gift['name'],
     qty: Gift['qty'],
     image: Gift['image'],
-    destinatario: Gift['destinatario']
+    receiver: Gift['receiver']
   ) => void;
   onCancel: () => void;
   error: string | null;
@@ -17,7 +17,7 @@ interface Form extends HTMLFormElement {
   gift: HTMLInputElement;
   qty: HTMLInputElement;
   image: HTMLInputElement;
-  destinatario: HTMLInputElement;
+  receiver: HTMLInputElement;
 }
 
 function GiftForm({ onGiftSubmitted, error, onCancel }: Props) {
@@ -26,9 +26,9 @@ function GiftForm({ onGiftSubmitted, error, onCancel }: Props) {
     const gift = e.currentTarget.gift.value;
     const qty = +e.currentTarget.qty.value;
     const image = e.currentTarget.image.value;
-    const destinatario = e.currentTarget.destinatario.value;
-    if (gift && qty && image) {
-      onGiftSubmitted(gift, qty, image, destinatario);
+    const receiver = e.currentTarget.receiver.value;
+    if (gift && qty && image && receiver) {
+      onGiftSubmitted(gift, qty, image, receiver);
       e.currentTarget.reset();
     }
   };
@@ -45,7 +45,7 @@ function GiftForm({ onGiftSubmitted, error, onCancel }: Props) {
       />
       <input
         type="text"
-        name="destinatario"
+        name="receiver"
         className="my-3 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent"
         required
         placeholder="Destinatario"

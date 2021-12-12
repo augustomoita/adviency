@@ -23,14 +23,14 @@ export const useGift = () => {
     );
   }
 
-  function find(
+  function get(
     gift: Gift['name'],
-    destinatario: Gift['destinatario']
+    receiver: Gift['receiver']
   ): Gift | undefined {
     return gifts.find(
       (item) =>
         item.name.toLowerCase() === gift.toLowerCase() &&
-        item.destinatario.toLowerCase() === destinatario.toLowerCase()
+        item.receiver.toLowerCase() === receiver.toLowerCase()
     );
   }
 
@@ -38,7 +38,7 @@ export const useGift = () => {
     gift: Gift['name'],
     qty: Gift['qty'],
     image: Gift['image'],
-    destinatario: Gift['destinatario']
+    receiver: Gift['receiver']
   ) {
     setGifts([
       ...gifts,
@@ -47,7 +47,7 @@ export const useGift = () => {
         name: gift,
         qty,
         image,
-        destinatario,
+        receiver,
       },
     ]);
   }
@@ -60,5 +60,5 @@ export const useGift = () => {
     setGifts([]);
   }
 
-  return { gifts, find, add, update, remove, clean };
+  return { gifts, get, add, update, remove, clean };
 };
