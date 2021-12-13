@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
+import { getGifts, saveGifts } from './api';
 
 export const useGift = () => {
-  const storedGifts = localStorage.getItem('gifts') || '[]';
+  const storedGifts: Gift[] = getGifts();
 
-  const [gifts, setGifts] = useState<Gift[]>(JSON.parse(storedGifts));
+  const [gifts, setGifts] = useState<Gift[]>(storedGifts);
 
   useEffect(() => {
-    return localStorage.setItem('gifts', JSON.stringify(gifts));
+    return saveGifts(gifts);
   }, [gifts]);
 
   function update(gift: Gift, qty: Gift['qty']) {
