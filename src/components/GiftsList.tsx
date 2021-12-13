@@ -7,9 +7,16 @@ type Props = {
   onDeleteItem: (gift: Gift) => void;
   onDeleteAll: () => void;
   onUpdateItem: (gift: Gift, qty: Gift['qty']) => void;
+  onSelectItem: (gift: Gift) => void;
 };
 
-function GiftsList({ gifts, onDeleteItem, onDeleteAll, onUpdateItem }: Props) {
+function GiftsList({
+  gifts,
+  onDeleteItem,
+  onDeleteAll,
+  onUpdateItem,
+  onSelectItem,
+}: Props) {
   return (
     <div className="pt-3">
       <ul>
@@ -19,6 +26,7 @@ function GiftsList({ gifts, onDeleteItem, onDeleteAll, onUpdateItem }: Props) {
             gift={gift}
             onDelete={() => onDeleteItem(gift)}
             onQtyChange={(quantity: number) => onUpdateItem(gift, quantity)}
+            onSelect={() => onSelectItem(gift)}
           />
         ))}
       </ul>

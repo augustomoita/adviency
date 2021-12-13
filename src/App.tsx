@@ -6,13 +6,14 @@ import Modal from './components/Modal';
 import { useGift } from './useGift';
 
 function App() {
-  const { gifts, add, update, remove, clean } = useGift();
+  const { gifts, upsert, remove, clean } = useGift();
   const [error, setError] = useState<string | null>(null);
   const [formVisible, setFormVisible] = useState<boolean>(false);
+  const [selected, setSelected] = useState<Gift | null>(null);
 
   const addGift = (gift: Gift) => {
     try {
-      add(gift);
+      upsert(gift);
       closeModal();
     } catch (err: any) {
       setError(err.message);
@@ -20,7 +21,8 @@ function App() {
   };
 
   const updateQuantity = (gift: Gift, qty: Gift['qty']) => {
-    update(gift, qty);
+    gift.qty += qty;
+    upsert(gift);
   };
 
   const deleteGift = (gift: Gift) => {
@@ -35,9 +37,15 @@ function App() {
     setFormVisible(true);
   };
 
+  const openEditModal = (gift: Gift) => {
+    setSelected(gift);
+    setFormVisible(true);
+  };
+
   const closeModal = () => {
     setFormVisible(false);
     setError(null);
+    setSelected(null);
   };
 
   return (
@@ -47,6 +55,7 @@ function App() {
           onGiftSubmitted={addGift}
           error={error}
           onCancel={closeModal}
+          data={selected}
         />
       </Modal>
       <div className="border-8 border-double border-green-600 bg-white rounded px-16 py-8 w-2/5">
@@ -59,6 +68,7 @@ function App() {
           onDeleteItem={deleteGift}
           onDeleteAll={deleteAllGifts}
           onUpdateItem={updateQuantity}
+          onSelectItem={openEditModal}
         />
       </div>
     </div>

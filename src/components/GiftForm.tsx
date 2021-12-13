@@ -6,6 +6,7 @@ type Props = {
   onGiftSubmitted: (gift: Gift) => void;
   onCancel: () => void;
   error: string | null;
+  data: Gift | null;
 };
 
 interface Form extends HTMLFormElement {
@@ -15,7 +16,7 @@ interface Form extends HTMLFormElement {
   receiver: HTMLInputElement;
 }
 
-function GiftForm({ onGiftSubmitted, error, onCancel }: Props) {
+function GiftForm({ onGiftSubmitted, error, onCancel, data }: Props) {
   const { generateId } = useGift();
   const handleSubmit = (e: React.FormEvent<Form>) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ function GiftForm({ onGiftSubmitted, error, onCancel }: Props) {
     const receiver = e.currentTarget.receiver.value;
     if (name && qty && image && receiver) {
       const gift: Gift = {
-        id: generateId(),
+        id: data ? data.id : generateId(),
         name,
         qty,
         image,
@@ -38,13 +39,14 @@ function GiftForm({ onGiftSubmitted, error, onCancel }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col justify-evenly">
-      <h2 className="text-2xl">Agregar Regalo</h2>
+      <h2 className="text-2xl">Guardar Regalo</h2>
       <input
         type="text"
         name="gift"
         className="my-3 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent"
         required
         placeholder="Regalo"
+        defaultValue={data?.name}
       />
       <input
         type="text"
@@ -52,6 +54,7 @@ function GiftForm({ onGiftSubmitted, error, onCancel }: Props) {
         className="my-3 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent"
         required
         placeholder="Destinatario"
+        defaultValue={data?.receiver}
       />
       <input
         type="text"
@@ -59,12 +62,13 @@ function GiftForm({ onGiftSubmitted, error, onCancel }: Props) {
         className="my-3 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent"
         required
         placeholder="Imagen"
+        defaultValue={data?.image}
       />
       <input
         type="number"
         name="qty"
         min={1}
-        defaultValue={1}
+        defaultValue={data?.qty || 1}
         className="my-3 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent"
         placeholder="Cantidad"
       />
@@ -73,7 +77,7 @@ function GiftForm({ onGiftSubmitted, error, onCancel }: Props) {
           Cancelar
         </Button>
         <Button color="red" type="submit" className="w-1/3">
-          Agregar
+          Guardar
         </Button>
       </div>
       {error && <p className="mt-3 font-semibold text-red-500">{error}</p>}

@@ -10,35 +10,25 @@ export const useGift = () => {
     return saveGifts(gifts);
   }, [gifts]);
 
-  function update(gift: Gift, qty: Gift['qty']) {
-    setGifts(
-      gifts.map((item) =>
-        item.id === gift.id
-          ? {
-              ...item,
-              qty: item.qty + qty,
-            }
-          : item
-      )
-    );
-  }
-
-  function exists(gift: Gift): boolean {
-    return (
-      gifts.find(
-        (item) =>
-          item.name.toLowerCase() === gift.name.toLowerCase() &&
-          item.receiver.toLowerCase() === gift.receiver.toLowerCase()
-      ) !== undefined
-    );
-  }
-
-  function add(gift: Gift) {
+  function upsert(gift: Gift) {
     if (exists(gift)) {
+      update(gift);
+      return;
+    }
+
+    if (isRepetead(gift)) {
       throw new Error('El regalo ya fue cargado');
     }
 
+    add(gift);
+  }
+
+  function add(gift: Gift) {
     setGifts([...gifts, gift]);
+  }
+
+  function update(gift: Gift) {
+    setGifts(gifts.map((item) => (item.id === gift.id ? gift : item)));
   }
 
   function remove(gift: Gift) {
@@ -53,5 +43,20 @@ export const useGift = () => {
     return Math.floor(Math.random() * Date.now());
   }
 
-  return { gifts, add, update, remove, clean, generateId };
+  function isRepetead(gift: Gift): boolean {
+    return (
+      gifts.find(
+        (item) =>
+          item.name.toLowerCase() === gift.name.toLowerCase() &&
+          item.receiver.toLowerCase() === gift.receiver.toLowerCase() &&
+          item.id !== gift.id
+      ) !== undefined
+    );
+  }
+
+  function exists(gift: Gift): boolean {
+    return gifts.find((item) => item.id === gift.id) !== undefined;
+  }
+
+  return { gifts, upsert, remove, clean, generateId };
 };

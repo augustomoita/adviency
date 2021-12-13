@@ -6,9 +6,10 @@ type Props = {
   gift: Gift;
   onDelete: () => void;
   onQtyChange: (qty: Gift['qty']) => void;
+  onSelect: () => void;
 };
 
-function GiftItem({ gift, onDelete, onQtyChange }: Props) {
+function GiftItem({ gift, onDelete, onQtyChange, onSelect }: Props) {
   const { name, qty, image, receiver } = gift;
 
   const handleUpdate = (quantity: number) => {
@@ -28,6 +29,9 @@ function GiftItem({ gift, onDelete, onQtyChange }: Props) {
       </span>
       <span className="flex items-center">
         <Counter qty={qty} onChange={handleUpdate} />
+        <Button className="mx-1" color="blue" onClick={onSelect}>
+          E
+        </Button>
         <Button className="mx-1" color="red" onClick={onDelete}>
           X
         </Button>
