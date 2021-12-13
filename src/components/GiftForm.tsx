@@ -1,14 +1,10 @@
 import React from 'react';
 import { Gift } from '../types';
+import { useGift } from '../useGift';
 import Button from './Button';
 
 type Props = {
-  onGiftSubmitted: (
-    gift: Gift['name'],
-    qty: Gift['qty'],
-    image: Gift['image'],
-    receiver: Gift['receiver']
-  ) => void;
+  onGiftSubmitted: (gift: Gift) => void;
   onCancel: () => void;
   error: string | null;
 };
@@ -21,14 +17,22 @@ interface Form extends HTMLFormElement {
 }
 
 function GiftForm({ onGiftSubmitted, error, onCancel }: Props) {
+  const { generateId } = useGift();
   const handleSubmit = (e: React.FormEvent<Form>) => {
     e.preventDefault();
-    const gift = e.currentTarget.gift.value;
+    const name = e.currentTarget.gift.value;
     const qty = +e.currentTarget.qty.value;
     const image = e.currentTarget.image.value;
     const receiver = e.currentTarget.receiver.value;
-    if (gift && qty && image && receiver) {
-      onGiftSubmitted(gift, qty, image, receiver);
+    if (name && qty && image && receiver) {
+      const gift: Gift = {
+        id: generateId(),
+        name,
+        qty,
+        image,
+        receiver,
+      };
+      onGiftSubmitted(gift);
       e.currentTarget.reset();
     }
   };

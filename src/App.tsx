@@ -11,14 +11,9 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const [formVisible, setFormVisible] = useState<boolean>(false);
 
-  const addGift = (
-    name: Gift['name'],
-    qty: Gift['qty'],
-    image: Gift['image'],
-    receiver: Gift['receiver']
-  ) => {
+  const addGift = (gift: Gift) => {
     try {
-      add(name, qty, image, receiver);
+      add(gift);
       closeModal();
     } catch (err: any) {
       setError(err.message);

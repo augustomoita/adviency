@@ -23,36 +23,22 @@ export const useGift = () => {
     );
   }
 
-  function exists(gift: Gift['name'], receiver: Gift['receiver']): boolean {
+  function exists(gift: Gift): boolean {
     return (
       gifts.find(
         (item) =>
-          item.name.toLowerCase() === gift.toLowerCase() &&
-          item.receiver.toLowerCase() === receiver.toLowerCase()
+          item.name.toLowerCase() === gift.name.toLowerCase() &&
+          item.receiver.toLowerCase() === gift.receiver.toLowerCase()
       ) !== undefined
     );
   }
 
-  function add(
-    gift: Gift['name'],
-    qty: Gift['qty'],
-    image: Gift['image'],
-    receiver: Gift['receiver']
-  ) {
-    if (exists(gift, receiver)) {
+  function add(gift: Gift) {
+    if (exists(gift)) {
       throw new Error('El regalo ya fue cargado');
     }
 
-    setGifts([
-      ...gifts,
-      {
-        id: Math.floor(Math.random() * Date.now()),
-        name: gift,
-        qty,
-        image,
-        receiver,
-      },
-    ]);
+    setGifts([...gifts, gift]);
   }
 
   function remove(gift: Gift) {
@@ -63,5 +49,9 @@ export const useGift = () => {
     setGifts([]);
   }
 
-  return { gifts, add, update, remove, clean };
+  function generateId(): number {
+    return Math.floor(Math.random() * Date.now());
+  }
+
+  return { gifts, add, update, remove, clean, generateId };
 };
