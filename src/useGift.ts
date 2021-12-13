@@ -23,14 +23,13 @@ export const useGift = () => {
     );
   }
 
-  function get(
-    gift: Gift['name'],
-    receiver: Gift['receiver']
-  ): Gift | undefined {
-    return gifts.find(
-      (item) =>
-        item.name.toLowerCase() === gift.toLowerCase() &&
-        item.receiver.toLowerCase() === receiver.toLowerCase()
+  function exists(gift: Gift['name'], receiver: Gift['receiver']): boolean {
+    return (
+      gifts.find(
+        (item) =>
+          item.name.toLowerCase() === gift.toLowerCase() &&
+          item.receiver.toLowerCase() === receiver.toLowerCase()
+      ) !== undefined
     );
   }
 
@@ -40,6 +39,10 @@ export const useGift = () => {
     image: Gift['image'],
     receiver: Gift['receiver']
   ) {
+    if (exists(gift, receiver)) {
+      throw new Error('El regalo ya fue cargado');
+    }
+
     setGifts([
       ...gifts,
       {
@@ -60,5 +63,5 @@ export const useGift = () => {
     setGifts([]);
   }
 
-  return { gifts, get, add, update, remove, clean };
+  return { gifts, add, update, remove, clean };
 };
