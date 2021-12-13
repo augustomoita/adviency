@@ -39,7 +39,9 @@ function GiftForm({ onGiftSubmitted, error, onCancel, data }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col justify-evenly">
-      <h2 className="text-2xl">Guardar Regalo</h2>
+      <h2 className="text-2xl">
+        {data ? 'Modificar Regalo' : 'Agregar Regalo'}
+      </h2>
       <input
         type="text"
         name="gift"
@@ -77,7 +79,7 @@ function GiftForm({ onGiftSubmitted, error, onCancel, data }: Props) {
           Cancelar
         </Button>
         <Button color="red" type="submit" className="w-1/3">
-          Guardar
+          {data ? 'Guardar' : 'Agregar'}
         </Button>
       </div>
       {error && <p className="mt-3 font-semibold text-red-500">{error}</p>}
