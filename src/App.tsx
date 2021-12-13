@@ -3,7 +3,6 @@ import Button from './components/Button';
 import GiftForm from './components/GiftForm';
 import GiftsList from './components/GiftsList';
 import Modal from './components/Modal';
-import { Gift } from './types';
 import { useGift } from './useGift';
 
 function App() {

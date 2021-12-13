@@ -1,5 +1,4 @@
 import React from 'react';
-import { Gift } from '../types';
 import Button from './Button';
 import GiftItem from './GiftItem';
 

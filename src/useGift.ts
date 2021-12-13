@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Gift } from './types';
 
 export const useGift = () => {
   const storedGifts = localStorage.getItem('gifts') || '[]';

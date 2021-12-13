@@ -1,5 +1,4 @@
 import React from 'react';
-import { Gift } from '../types';
 import { useGift } from '../useGift';
 import Button from './Button';
 
