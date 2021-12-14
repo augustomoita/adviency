@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from './components/Button';
 import GiftForm from './components/GiftForm';
 import GiftsList from './components/GiftsList';
@@ -39,7 +39,7 @@ function App() {
 
   const openEditModal = (gift: Gift) => {
     setSelected(gift);
-    setFormVisible(true);
+    openModal();
   };
 
   const closeModal = () => {
@@ -47,6 +47,19 @@ function App() {
     setError(null);
     setSelected(null);
   };
+
+  useEffect(() => {
+    const escFunction = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    };
+    document.addEventListener('keydown', escFunction, false);
+
+    return () => {
+      document.removeEventListener('keydown', escFunction, false);
+    };
+  }, []);
 
   return (
     <div className="font-christmas bg-christmas bg-no-repeat bg-cover h-screen flex flex-col justify-center items-center text-center">
@@ -56,6 +69,7 @@ function App() {
           error={error}
           onCancel={closeModal}
           data={selected}
+          focus={formVisible}
         />
       </Modal>
       <div className="border-8 border-double border-green-600 bg-white rounded px-16 py-8 w-2/5">

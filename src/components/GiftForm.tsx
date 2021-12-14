@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useGift } from '../useGift';
 import Button from './Button';
 
@@ -7,6 +7,7 @@ type Props = {
   onCancel: () => void;
   error: string | null;
   data: Gift | null;
+  focus: boolean;
 };
 
 interface Form extends HTMLFormElement {
@@ -16,8 +17,16 @@ interface Form extends HTMLFormElement {
   receiver: HTMLInputElement;
 }
 
-function GiftForm({ onGiftSubmitted, error, onCancel, data }: Props) {
+function GiftForm({ onGiftSubmitted, error, onCancel, data, focus }: Props) {
   const { generateId } = useGift();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (focus) {
+      inputRef.current?.focus();
+    }
+  }, [focus]);
+
   const handleSubmit = (e: React.FormEvent<Form>) => {
     e.preventDefault();
     const name = e.currentTarget.gift.value;
@@ -49,6 +58,7 @@ function GiftForm({ onGiftSubmitted, error, onCancel, data }: Props) {
         required
         placeholder="Regalo"
         defaultValue={data?.name}
+        ref={inputRef}
       />
       <input
         type="text"
