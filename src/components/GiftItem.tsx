@@ -29,7 +29,7 @@ function GiftItem({ gift, onDelete, onQtyChange, onSelect }: Props) {
       </span>
       <span className="flex items-center">
         <Counter qty={qty} onChange={handleUpdate} />
-        <Button className="mx-1" color="blue" onClick={onSelect}>
+        <Button className="mx-1" color="green" onClick={onSelect}>
           ✏️
         </Button>
         <Button className="mx-1" color="red" onClick={onDelete}>

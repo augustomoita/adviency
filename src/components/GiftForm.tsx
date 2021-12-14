@@ -45,7 +45,7 @@ function GiftForm({ onGiftSubmitted, error, onCancel, data }: Props) {
       <input
         type="text"
         name="gift"
-        className="my-3 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent"
+        className="my-3 border-green-700 focus:border-green-700 focus:ring-transparent focus:ring-offset-transparent"
         required
         placeholder="Regalo"
         defaultValue={data?.name}
@@ -53,7 +53,7 @@ function GiftForm({ onGiftSubmitted, error, onCancel, data }: Props) {
       <input
         type="text"
         name="receiver"
-        className="my-3 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent"
+        className="my-3 border-green-700 focus:border-green-700 focus:ring-transparent focus:ring-offset-transparent"
         required
         placeholder="Destinatario"
         defaultValue={data?.receiver}
@@ -61,7 +61,7 @@ function GiftForm({ onGiftSubmitted, error, onCancel, data }: Props) {
       <input
         type="text"
         name="image"
-        className="my-3 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent"
+        className="my-3 border-green-700 focus:border-green-700 focus:ring-transparent focus:ring-offset-transparent"
         required
         placeholder="Imagen"
         defaultValue={data?.image}
@@ -71,14 +71,14 @@ function GiftForm({ onGiftSubmitted, error, onCancel, data }: Props) {
         name="qty"
         min={1}
         defaultValue={data?.qty || 1}
-        className="my-3 border-gray-500 focus:border-gray-500 focus:ring-transparent focus:ring-offset-transparent"
+        className="my-3 border-green-700 focus:border-green-700 focus:ring-transparent focus:ring-offset-transparent"
         placeholder="Cantidad"
       />
       <div className="flex justify-evenly">
-        <Button color="gray" tone={300} className="w-1/3" onClick={onCancel}>
+        <Button color="red" className="w-1/3" onClick={onCancel}>
           Cancelar
         </Button>
-        <Button color="red" type="submit" className="w-1/3">
+        <Button color="green" type="submit" className="w-1/3">
           {data ? 'Guardar' : 'Agregar'}
         </Button>
       </div>
