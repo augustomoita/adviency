@@ -7,8 +7,10 @@ export const useGift = () => {
 
   useLayoutEffect(() => {
     setLoading(true);
-    setGifts(api.gifts.list());
-    setLoading(false);
+    api.gifts
+      .list()
+      .then(setGifts)
+      .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
