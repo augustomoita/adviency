@@ -3,7 +3,9 @@ const api = {
     list: function (): Promise<Gift[]> {
       const storedGifts = localStorage.getItem('gifts') || '[]';
       return new Promise((resolve) => {
-        resolve(JSON.parse(storedGifts));
+        setTimeout(() => {
+          resolve(JSON.parse(storedGifts));
+        }, 1000);
       });
     },
     save: function (gifts: Gift[]): void {
