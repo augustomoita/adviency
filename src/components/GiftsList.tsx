@@ -1,9 +1,11 @@
 import React from 'react';
 import Button from './Button';
 import GiftItem from './GiftItem';
+import Loader from './Loader';
 
 type Props = {
   gifts: Gift[];
+  loading: boolean;
   onDeleteItem: (gift: Gift) => void;
   onDeleteAll: () => void;
   onUpdateItem: (gift: Gift, qty: Gift['qty']) => void;
@@ -12,11 +14,16 @@ type Props = {
 
 function GiftsList({
   gifts,
+  loading,
   onDeleteItem,
   onDeleteAll,
   onUpdateItem,
   onSelectItem,
 }: Props) {
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <div className="pt-3">
       <ul>

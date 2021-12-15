@@ -8,8 +8,13 @@ const api = {
         }, 1000);
       });
     },
-    save: function (gifts: Gift[]): void {
-      localStorage.setItem('gifts', JSON.stringify(gifts));
+    save: function (gifts: Gift[]): Promise<boolean> {
+      return new Promise((resolve) => {
+        localStorage.setItem('gifts', JSON.stringify(gifts));
+        setTimeout(() => {
+          resolve(true);
+        });
+      });
     },
   },
 };

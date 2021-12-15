@@ -14,7 +14,7 @@ export const useGift = () => {
   }, []);
 
   useEffect(() => {
-    return api.gifts.save(gifts);
+    api.gifts.save(gifts);
   }, [gifts]);
 
   function upsert(gift: Gift) {

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Button from './components/Button';
 import GiftForm from './components/GiftForm';
 import GiftsList from './components/GiftsList';
-import Loader from './components/Loader';
 import Modal from './components/Modal';
 import { useGift } from './useGift';
 
@@ -74,23 +73,18 @@ function App() {
         />
       </Modal>
       <div className="border-8 border-double border-green-600 bg-white rounded px-16 py-8 w-2/5">
-        {loading ? (
-          <Loader />
-        ) : (
-          <>
-            <h1 className="text-3xl mb-3">Regalos:</h1>
-            <Button color="red" onClick={openModal}>
-              Agregar Regalo
-            </Button>
-            <GiftsList
-              gifts={gifts}
-              onDeleteItem={deleteGift}
-              onDeleteAll={deleteAllGifts}
-              onUpdateItem={updateQuantity}
-              onSelectItem={openEditModal}
-            />
-          </>
-        )}
+        <h1 className="text-3xl mb-3">Regalos:</h1>
+        <Button color="red" onClick={openModal}>
+          Agregar Regalo
+        </Button>
+        <GiftsList
+          gifts={gifts}
+          onDeleteItem={deleteGift}
+          onDeleteAll={deleteAllGifts}
+          onUpdateItem={updateQuantity}
+          onSelectItem={openEditModal}
+          loading={loading}
+        />
       </div>
     </div>
   );
