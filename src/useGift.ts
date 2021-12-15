@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
-import { getGifts, saveGifts } from './api';
+import api from './api';
 
 export const useGift = () => {
-  const storedGifts: Gift[] = getGifts();
-
-  const [gifts, setGifts] = useState<Gift[]>(storedGifts);
+  const [gifts, setGifts] = useState<Gift[]>([]);
 
   useEffect(() => {
-    return saveGifts(gifts);
+    setGifts(api.gifts.list());
+  }, []);
+  
+  useEffect(() => {
+    return api.gifts.save(gifts);
   }, [gifts]);
 
   function upsert(gift: Gift) {
