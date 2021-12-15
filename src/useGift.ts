@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import api from './api';
 
 export const useGift = () => {
   const [gifts, setGifts] = useState<Gift[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    setLoading(true);
     setGifts(api.gifts.list());
+    setLoading(false);
   }, []);
-  
+
   useEffect(() => {
     return api.gifts.save(gifts);
   }, [gifts]);
@@ -60,5 +63,5 @@ export const useGift = () => {
     return gifts.find((item) => item.id === gift.id) !== undefined;
   }
 
-  return { gifts, upsert, remove, clean, generateId };
+  return { gifts, upsert, remove, clean, generateId, loading };
 };

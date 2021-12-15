@@ -4,9 +4,10 @@ import GiftForm from './components/GiftForm';
 import GiftsList from './components/GiftsList';
 import Modal from './components/Modal';
 import { useGift } from './useGift';
+import './App.css';
 
 function App() {
-  const { gifts, upsert, remove, clean } = useGift();
+  const { gifts, upsert, remove, clean, loading } = useGift();
   const [error, setError] = useState<string | null>(null);
   const [formVisible, setFormVisible] = useState<boolean>(false);
   const [selected, setSelected] = useState<Gift | null>(null);
@@ -73,17 +74,26 @@ function App() {
         />
       </Modal>
       <div className="border-8 border-double border-green-600 bg-white rounded px-16 py-8 w-2/5">
-        <h1 className="text-3xl mb-3">Regalos:</h1>
-        <Button color="red" onClick={openModal}>
-          Agregar Regalo
-        </Button>
-        <GiftsList
-          gifts={gifts}
-          onDeleteItem={deleteGift}
-          onDeleteAll={deleteAllGifts}
-          onUpdateItem={updateQuantity}
-          onSelectItem={openEditModal}
-        />
+        {loading ? (
+          <div className="flex flex-col items-center justify-center">
+            <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"></div>
+            <h2 className="text-center text-xl font-semibold">Cargando...</h2>
+          </div>
+        ) : (
+          <>
+            <h1 className="text-3xl mb-3">Regalos:</h1>
+            <Button color="red" onClick={openModal}>
+              Agregar Regalo
+            </Button>
+            <GiftsList
+              gifts={gifts}
+              onDeleteItem={deleteGift}
+              onDeleteAll={deleteAllGifts}
+              onUpdateItem={updateQuantity}
+              onSelectItem={openEditModal}
+            />
+          </>
+        )}
       </div>
     </div>
   );

@@ -54,7 +54,7 @@ function GiftForm({ onGiftSubmitted, error, onCancel, data, focus }: Props) {
       <input
         type="text"
         name="gift"
-        className="my-3 border-green-700 focus:border-green-700 focus:ring-transparent focus:ring-offset-transparent"
+        className="my-3 border-green-700 focus:border-green-700 focus:ring-green-700 focus:ring-offset-transparent"
         required
         placeholder="Regalo"
         defaultValue={data?.name}
@@ -63,7 +63,7 @@ function GiftForm({ onGiftSubmitted, error, onCancel, data, focus }: Props) {
       <input
         type="text"
         name="receiver"
-        className="my-3 border-green-700 focus:border-green-700 focus:ring-transparent focus:ring-offset-transparent"
+        className="my-3 border-green-700 focus:border-green-700 focus:ring-green-700 focus:ring-offset-transparent"
         required
         placeholder="Destinatario"
         defaultValue={data?.receiver}
@@ -71,7 +71,7 @@ function GiftForm({ onGiftSubmitted, error, onCancel, data, focus }: Props) {
       <input
         type="text"
         name="image"
-        className="my-3 border-green-700 focus:border-green-700 focus:ring-transparent focus:ring-offset-transparent"
+        className="my-3 border-green-700 focus:border-green-700 focus:ring-green-700 focus:ring-offset-transparent"
         required
         placeholder="Imagen"
         defaultValue={data?.image}
@@ -81,7 +81,7 @@ function GiftForm({ onGiftSubmitted, error, onCancel, data, focus }: Props) {
         name="qty"
         min={1}
         defaultValue={data?.qty || 1}
-        className="my-3 border-green-700 focus:border-green-700 focus:ring-transparent focus:ring-offset-transparent"
+        className="my-3 border-green-700 focus:border-green-700 focus:ring-green-700 focus:ring-offset-transparent"
         placeholder="Cantidad"
       />
       <div className="flex justify-evenly">
