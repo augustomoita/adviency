@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useGift } from '../useGift';
 import Button from './Button';
+import suggestedGifts from '../suggestedGifts.json';
 
 type Props = {
   onGiftSubmitted: (gift: Gift) => void;
@@ -46,20 +47,31 @@ function GiftForm({ onGiftSubmitted, error, onCancel, data, focus }: Props) {
     }
   };
 
+  const handleRandomGift = () => {
+    const randomIndex = Math.floor(Math.random() * suggestedGifts.length);
+    const suggestedGift = suggestedGifts[randomIndex];
+    inputRef.current && (inputRef.current.value = suggestedGift);
+  };
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-col justify-evenly">
       <h2 className="text-2xl">
         {data ? 'Modificar Regalo' : 'Agregar Regalo'}
       </h2>
-      <input
-        type="text"
-        name="gift"
-        className="my-3 border-green-700 focus:border-green-700 focus:ring-green-700 focus:ring-offset-transparent"
-        required
-        placeholder="Regalo"
-        defaultValue={data?.name}
-        ref={inputRef}
-      />
+      <div className="flex justify-between items-center">
+        <input
+          type="text"
+          name="gift"
+          className="my-3 border-green-700 focus:border-green-700 focus:ring-green-700 focus:ring-offset-transparent w-2/3"
+          required
+          placeholder="Regalo"
+          defaultValue={data?.name}
+          ref={inputRef}
+        />
+        <Button tone={400} onClick={handleRandomGift}>
+          Sorprendeme!
+        </Button>
+      </div>
       <input
         type="text"
         name="receiver"
