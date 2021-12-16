@@ -7,15 +7,19 @@ export const useGift = () => {
 
   useLayoutEffect(() => {
     setLoading(true);
-    api.gifts
-      .list()
-      .then(setGifts)
-      .finally(() => setLoading(false));
+    loadGifts();
   }, []);
 
   useEffect(() => {
     api.gifts.save(gifts);
   }, [gifts]);
+
+  async function loadGifts() {
+    setLoading(true);
+    const savedGifts = await api.gifts.list();
+    setGifts(savedGifts);
+    setLoading(false);
+  }
 
   function upsert(gift: Gift) {
     if (exists(gift)) {
