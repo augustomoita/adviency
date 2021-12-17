@@ -31,16 +31,18 @@ function GiftForm({ onGiftSubmitted, error, onCancel, data, focus }: Props) {
   const handleSubmit = (e: React.FormEvent<Form>) => {
     e.preventDefault();
     const name = e.currentTarget.gift.value;
+    const price = +e.currentTarget.price.value;
     const qty = +e.currentTarget.qty.value;
     const image = e.currentTarget.image.value;
     const receiver = e.currentTarget.receiver.value;
-    if (name && qty && image && receiver) {
+    if (name && qty && image && receiver && price) {
       const gift: Gift = {
         id: data ? data.id : generateId(),
         name,
         qty,
         image,
         receiver,
+        price,
       };
       onGiftSubmitted(gift);
       e.currentTarget.reset();
@@ -72,6 +74,15 @@ function GiftForm({ onGiftSubmitted, error, onCancel, data, focus }: Props) {
           Sorprendeme!
         </Button>
       </div>
+      <input
+        type="number"
+        name="price"
+        min={0.01}
+        step={0.01}
+        defaultValue={data?.price}
+        className="my-3 border-green-700 focus:border-green-700 focus:ring-green-700 focus:ring-offset-transparent"
+        placeholder="Precio"
+      />
       <input
         type="text"
         name="receiver"

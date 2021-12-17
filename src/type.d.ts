@@ -4,4 +4,5 @@ type Gift = {
   qty: number;
   image: string;
   receiver: string;
+  price: number;
 };

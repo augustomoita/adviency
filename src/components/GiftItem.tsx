@@ -10,7 +10,14 @@ type Props = {
 };
 
 function GiftItem({ gift, onDelete, onQtyChange, onSelect }: Props) {
-  const { name, qty, image, receiver } = gift;
+  const { name, qty, image, receiver, price } = gift;
+  const total = price * qty;
+
+  const formatPrice = (value: number) =>
+    new Intl.NumberFormat('es-AR', {
+      style: 'currency',
+      currency: 'ARS',
+    }).format(value);
 
   const handleUpdate = (quantity: number) => {
     if (qty + quantity > 0) {
@@ -23,7 +30,9 @@ function GiftItem({ gift, onDelete, onQtyChange, onSelect }: Props) {
       <span className="flex items-center">
         <img src={image} alt={name} className="h-20 w-20 p-1" />
         <div className="text-left">
-          <p className="uppercase text-lg font-medium mx-2">{name}</p>
+          <p className="uppercase text-lg font-medium mx-2">
+            {name} - {formatPrice(total)}
+          </p>
           <p className="capitalize text-sm text-gray-400 mx-2">{receiver}</p>
         </div>
       </span>
