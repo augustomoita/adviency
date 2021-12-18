@@ -1,6 +1,7 @@
 import React from 'react';
 import Counter from './Counter';
 import Button from './Button';
+import { formatPrice } from '../utils';
 
 type Props = {
   gift: Gift;
@@ -12,12 +13,6 @@ type Props = {
 function GiftItem({ gift, onDelete, onQtyChange, onSelect }: Props) {
   const { name, qty, image, receiver, price } = gift;
   const total = price * qty;
-
-  const formatPrice = (value: number) =>
-    new Intl.NumberFormat('es-AR', {
-      style: 'currency',
-      currency: 'ARS',
-    }).format(value);
 
   const handleUpdate = (quantity: number) => {
     if (qty + quantity > 0) {

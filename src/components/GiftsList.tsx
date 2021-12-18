@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatPrice } from '../utils';
 import Button from './Button';
 import GiftItem from './GiftItem';
 import Loader from './Loader';
@@ -20,6 +21,11 @@ function GiftsList({
   onUpdateItem,
   onSelectItem,
 }: Props) {
+  const total: number = gifts.reduce(
+    (acc, cur) => acc + cur.qty * cur.price,
+    0
+  );
+
   if (loading) {
     return <Loader />;
   }
@@ -38,9 +44,12 @@ function GiftsList({
         ))}
       </ul>
       {gifts.length > 0 ? (
-        <Button className="mt-6" color="red" tone={300} onClick={onDeleteAll}>
-          Borrar todo
-        </Button>
+        <>
+          <p>Total: {formatPrice(total)}</p>
+          <Button className="mt-6" color="red" tone={300} onClick={onDeleteAll}>
+            Borrar todo
+          </Button>
+        </>
       ) : (
         <p>No hay regalos, agrega alguno!</p>
       )}
