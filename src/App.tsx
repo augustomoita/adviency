@@ -42,6 +42,17 @@ function App() {
     openModal();
   };
 
+  const openDuplicateModal = (gift: Gift) => {
+    const duplicatedGift: Gift = {
+      name: gift.name,
+      qty: gift.qty,
+      image: gift.image,
+      price: gift.price,
+    };
+
+    openEditModal(duplicatedGift);
+  };
+
   const closeModal = () => {
     setFormVisible(false);
     setError(null);
@@ -83,6 +94,7 @@ function App() {
           onDeleteAll={deleteAllGifts}
           onUpdateItem={updateQuantity}
           onSelectItem={openEditModal}
+          onDuplicateItem={openDuplicateModal}
           loading={loading}
         />
       </div>

@@ -8,9 +8,16 @@ type Props = {
   onDelete: () => void;
   onQtyChange: (qty: Gift['qty']) => void;
   onSelect: () => void;
+  onDuplicate: () => void;
 };
 
-function GiftItem({ gift, onDelete, onQtyChange, onSelect }: Props) {
+function GiftItem({
+  gift,
+  onDelete,
+  onQtyChange,
+  onSelect,
+  onDuplicate,
+}: Props) {
   const { name, qty, image, receiver, price } = gift;
   const total = price * qty;
 
@@ -35,6 +42,9 @@ function GiftItem({ gift, onDelete, onQtyChange, onSelect }: Props) {
         <Counter qty={qty} onChange={handleUpdate} />
         <Button className="mx-1" color="green" onClick={onSelect}>
           ✏️
+        </Button>
+        <Button className="mx-1" color="blue" onClick={onDuplicate}>
+          📑
         </Button>
         <Button className="mx-1" color="red" onClick={onDelete}>
           X

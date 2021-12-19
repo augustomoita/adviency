@@ -1,8 +1,8 @@
 type Gift = {
-  id: number;
+  id?: number;
   name: string;
   qty: number;
   image: string;
-  receiver: string;
+  receiver?: string;
   price: number;
 };

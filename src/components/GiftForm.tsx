@@ -37,7 +37,7 @@ function GiftForm({ onGiftSubmitted, error, onCancel, data, focus }: Props) {
     const receiver = e.currentTarget.receiver.value;
     if (name && qty && image && receiver && price) {
       const gift: Gift = {
-        id: data ? data.id : generateId(),
+        id: data && data.id ? data.id : generateId(),
         name,
         qty,
         image,

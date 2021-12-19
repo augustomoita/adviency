@@ -11,6 +11,7 @@ type Props = {
   onDeleteAll: () => void;
   onUpdateItem: (gift: Gift, qty: Gift['qty']) => void;
   onSelectItem: (gift: Gift) => void;
+  onDuplicateItem: (gift: Gift) => void;
 };
 
 function GiftsList({
@@ -20,6 +21,7 @@ function GiftsList({
   onDeleteAll,
   onUpdateItem,
   onSelectItem,
+  onDuplicateItem,
 }: Props) {
   const total: number = gifts.reduce(
     (acc, cur) => acc + cur.qty * cur.price,
@@ -40,6 +42,7 @@ function GiftsList({
             onDelete={() => onDeleteItem(gift)}
             onQtyChange={(quantity: number) => onUpdateItem(gift, quantity)}
             onSelect={() => onSelectItem(gift)}
+            onDuplicate={() => onDuplicateItem(gift)}
           />
         ))}
       </ul>

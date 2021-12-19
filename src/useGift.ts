@@ -59,7 +59,7 @@ export const useGift = () => {
       gifts.find(
         (item) =>
           item.name.toLowerCase() === gift.name.toLowerCase() &&
-          item.receiver.toLowerCase() === gift.receiver.toLowerCase() &&
+          item.receiver?.toLowerCase() === gift.receiver?.toLowerCase() &&
           item.id !== gift.id
       ) !== undefined
     );
