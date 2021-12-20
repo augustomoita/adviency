@@ -32,13 +32,14 @@ function GiftItem({
       <span className="flex items-center">
         <img src={image} alt={name} className="h-20 w-20 p-1" />
         <div className="text-left">
-          <p className="uppercase text-lg font-medium mx-2">
-            {name} - {formatPrice(total)}
-          </p>
+          <p className="uppercase text-lg font-medium mx-2">{name}</p>
           <p className="capitalize text-sm text-gray-400 mx-2">{receiver}</p>
         </div>
       </span>
       <span className="flex items-center">
+        <p className="uppercase text-lg font-medium mx-2">
+          {formatPrice(total)}
+        </p>
         <Counter qty={qty} onChange={handleUpdate} />
         <Button className="mx-1" color="green" onClick={onSelect}>
           ✏️
