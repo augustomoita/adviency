@@ -1,0 +1,8 @@
+@media print {
+    .buy-list, .buy-list * {
+      visibility: visible;
+    }
+    body * {
+      visibility: hidden;
+    }
+  }
