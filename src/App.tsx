@@ -5,6 +5,7 @@ import GiftForm from './components/GiftForm';
 import GiftsList from './components/GiftsList';
 import Modal from './components/Modal';
 import { useGift } from './useGift';
+import Snowfall from 'react-snowfall';
 
 function App() {
   const { gifts, upsert, remove, clean, loading } = useGift();
@@ -62,6 +63,7 @@ function App() {
 
   return (
     <div className="font-christmas bg-christmas bg-no-repeat bg-cover h-screen flex flex-col justify-center items-center text-center">
+      <Snowfall />
       <Modal visible={formVisible} onClose={closeModal}>
         <GiftForm
           onGiftSubmitted={addGift}
