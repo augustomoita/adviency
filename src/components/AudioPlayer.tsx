@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 function AudioPlayer() {
   const [playing, setPlaying] = useState<boolean>(false);
-  const music = new Audio(
-    'https://andresguanov.github.io/assets/christmas.mp3'
-  );
+  const music = new Audio('christmas.mp3');
   music.volume = 0.1;
   music.loop = true;
   const [audio] = useState<HTMLAudioElement>(music);
