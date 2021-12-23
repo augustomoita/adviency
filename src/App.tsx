@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AudioPlayer from './components/AudioPlayer';
 import Button from './components/Button';
 import GiftForm from './components/GiftForm';
 import GiftsList from './components/GiftsList';
@@ -71,7 +72,10 @@ function App() {
         />
       </Modal>
       <div className="border-8 border-double border-green-600 bg-white rounded px-16 py-8 w-2/5">
-        <h1 className="text-3xl mb-3">Regalos:</h1>
+        <div className="flex justify-between">
+          <h1 className="text-3xl mb-3">Regalos:</h1>
+          <AudioPlayer />
+        </div>
         <Button color="red" onClick={openModal}>
           Agregar Regalo
         </Button>
